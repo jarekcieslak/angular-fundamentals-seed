@@ -1,0 +1,18 @@
+.passanger-item {
+	border: 1px solid #d9e296;
+	margin: 10px;
+	background-color: #ffffdc;
+	padding:30px;
+}
+
+.status {
+	width: 10px;
+	height: 10px;
+	background: #c0392b;
+	display: block;
+	margin: 8px 10px 0 0;
+	float: left;
+	&.checked-in {
+		background: #2eec71;
+	}
+}
