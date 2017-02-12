@@ -32,7 +32,6 @@ export class PassengerDetailsComponent implements OnChanges, OnInit {
     // we fire an event once user is done editing passenger
     toggleEdit(): void {
         if (this.editing) {
-            console.log('fired!');
             this.edit.emit(this.details)
         }
         this.editing = !this.editing;

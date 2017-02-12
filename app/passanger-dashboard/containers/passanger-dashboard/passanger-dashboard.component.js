@@ -7,39 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var PassengerDashboardComponent = (function () {
-    function PassengerDashboardComponent() {
+    function PassengerDashboardComponent(passangerService) {
+        this.passangerService = passangerService;
     }
     PassengerDashboardComponent.prototype.ngOnInit = function () {
-        this.passengers = [{
-                id: 1,
-                fullName: 'Hodornowa',
-                checkedIn: true,
-                checkInDate: 1486117624520,
-                children: [{ name: 'Johnny', age: 12 }]
-            },
-            {
-                id: 2,
-                fullName: 'Melanie Brooks',
-                checkedIn: true,
-                checkInDate: 1486117624525,
-                children: [{ name: 'Johnny', age: 12 }]
-            },
-            {
-                id: 3,
-                fullName: 'Jonny Cage',
-                checkedIn: false,
-                checkInDate: null,
-                children: [{ name: 'Johnny', age: 12 }, { name: 'Johnny', age: 12 }, { name: 'Johnny', age: 12 }]
-            },
-            {
-                id: 4,
-                fullName: 'Liu Kang',
-                checkedIn: true,
-                checkInDate: 1486117624525,
-                children: [{ name: 'Johnny', age: 12 }]
-            }
-        ];
-        console.log(this.passengers.length);
+        this.passengers = this.passangerService.getPassangers();
     };
     PassengerDashboardComponent.prototype.handleRemove = function (event) {
         this.passengers = this.passengers.filter(function (passenger) {
@@ -47,12 +19,14 @@ var PassengerDashboardComponent = (function () {
         });
     };
     PassengerDashboardComponent.prototype.handleEdit = function (event) {
-        this.passengers.map(function (passenger) {
+        this.passengers = this.passengers.map(function (passenger) {
             if (passenger.id === event.id) {
                 return Object.assign({}, passenger, event);
             }
+            else {
+                return passenger;
+            }
         });
-        console.log(this.passengers);
     };
     return PassengerDashboardComponent;
 }());
