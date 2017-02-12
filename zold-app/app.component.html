@@ -1,0 +1,16 @@
+<div class="app">
+    <h3>Airline passengers:</h3>
+    <ul>
+        <h1 [innerHtml]="imageSource"></h1>
+        <img [src]="imageSource" alt="test"/>
+        <li *ngFor="let passenger of passengers; let i = index">
+            <span [ngClass]="{'checked-in': passenger.checkedIn === true}" class="status"></span>
+            <span>{{i}} - {{passenger.fullName}}</span>
+        </li>
+
+        <input type="text" [value]="name"
+               (blur)="handleBlur($event)"
+               (input)="handleInput($event)">
+        <h1>{{name}}</h1>
+    </ul>
+</div>
