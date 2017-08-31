@@ -13,9 +13,6 @@
     <div class="date">
         Check in date: {{ details.checkInDate ? (details.checkInDate | date:'dd-MM-y') : 'not checked in'}}
     </div>
-    <div class="children">
-        Children: {{ details.children?.length || 0 }}
-    </div>
     <button (click)="toggleEdit()">
         {{ editing ? 'Done' : 'Edit'}}
     </button>

@@ -11,13 +11,11 @@ import {PassengerDashboardService} from "../../passenger-dashboard.service";
 export class PassengerViewerComponent implements OnInit {
     passenger: Passenger;
 
-    constructor(passengerService: PassengerDashboardService) {
-        passengerService.getPassenger(1).subscribe((data: Passenger) => {
-            this.passenger = data;
-        })
+    constructor(private passengerService: PassengerDashboardService) {
     }
 
     ngOnInit() {
-
+        this.passengerService.getPassenger('1')
+            .subscribe((data: Passenger) => this.passenger = data);
     }
 }

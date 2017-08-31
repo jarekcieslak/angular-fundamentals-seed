@@ -1,4 +1,2 @@
 <h1>Passenger viewer</h1>
-<pre>
-    {{passenger | json}}
-</pre>
+<passenger-form *ngIf="!!passenger" [detail]="passenger"></passenger-form>

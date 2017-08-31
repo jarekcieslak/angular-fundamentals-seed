@@ -9,43 +9,47 @@ import {Passenger} from '../../models/passenger.interface';
 export class PassengerDetailsComponent implements OnChanges, OnInit {
 
     @Input()
-    details: Passenger;
-    editing: boolean = false;
+    details:Passenger;
 
     @Output()
-    remove: EventEmitter<any> = new EventEmitter();
+    remove:EventEmitter<any> = new EventEmitter();
 
     @Output()
-    edit: EventEmitter<any> = new EventEmitter();
+    edit:EventEmitter<any> = new EventEmitter();
+
+    editing:boolean = false;
 
 
     // Necessary to update local value
-    onNameChange(value: string): void {
+    onNameChange(value:string):void {
+        console.log('changing name: ', value);
         this.details.fullName = value;
     }
 
     // We fire an event when user clicks remove passenger
-    removePassenger(passenger: Passenger): void {
+    removePassenger(passenger:Passenger):void {
         this.remove.emit(this.details);
     }
 
     // we fire an event once user is done editing passenger
-    toggleEdit(): void {
+    toggleEdit():void {
         if (this.editing) {
             this.edit.emit(this.details)
         }
         this.editing = !this.editing;
     }
 
-
-    // unnecessary lifecycle hook
-    ngOnInit() {
-    }
-
-    // we break two-way prototype inheritance binding. We do that to really make one-way data flow work!
+    // we break two-way prototype inheritance binding.
+    // We do that to really make one-way data flow work properly...
+    // Actually... it's not bad to have here the reference but we want to update
+    // parent component only when editing is finished.
     ngOnChanges(changes) {
+        console.log('Changes happened: ', changes);
         if (changes.details) {
             this.details = Object.assign({}, changes.details.currentValue)
         }
+    }
+
+    ngOnInit():void {
     }
 }

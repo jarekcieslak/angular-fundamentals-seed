@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Passenger} from '../../models/passenger.interface'
 import {PassengerDashboardService} from "../../passenger-dashboard.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'passenger-dashboard',
@@ -8,34 +9,36 @@ import {PassengerDashboardService} from "../../passenger-dashboard.service";
     styleUrls: ['./passenger-dashboard.component.scss']
 })
 export class PassengerDashboardComponent implements OnInit {
-    passengers: Passenger[];
+    passengers:Passenger[];
 
-    constructor(private passengerService: PassengerDashboardService) {
+    constructor(private passengerService:PassengerDashboardService) {
     }
 
     ngOnInit() {
-        this.passengerService.getPassengers().subscribe((data: Passenger[]) => this.passengers = data);
+        this.passengerService
+            .getPassengers()
+            .subscribe(
+                (data:Passenger[]) => this.passengers = data,
+                (error:any) => console.warn(error));
     }
 
-    handleRemove(event: Passenger) {
+    handleRemove(event:Passenger) {
         this.passengerService.deletePassenger(event)
-            .subscribe((data: Passenger) => {
-                this.passengers = this.passengers.filter((passenger: Passenger) => {
+            .subscribe(data => {
+                this.passengers = this.passengers.filter((passenger:Passenger) => {
                     return passenger.id !== event.id
                 });
-            })
+            });
     }
 
-    handleEdit(event: Passenger) {
+    handleEdit(event:Passenger) {
         this.passengerService.updatePassenger(event)
-            .subscribe((data: Passenger) => {
-
-                this.passengers = this.passengers.map((passenger: Passenger) => {
+            .subscribe((data:Passenger) => {
+                this.passengers = this.passengers.map((passenger:Passenger) => {
                     if (passenger.id === event.id) {
-                        return Object.assign({}, passenger, event);
-                    } else {
-                        return passenger;
+                        passenger = Object.assign({}, passenger, event);
                     }
+                    return passenger;
                 });
             });
 

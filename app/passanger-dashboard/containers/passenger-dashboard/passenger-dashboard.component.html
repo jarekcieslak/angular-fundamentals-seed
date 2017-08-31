@@ -1,13 +1,13 @@
 <div>
     <passenger-count [items]="passengers"></passenger-count>
-    <div *ngFor="let passenger of passengers">
-        {{passenger.fullName}}
-    </div>
+    <!--<div *ngFor="let passenger of passengers">-->
+        <!--{{passenger.fullName}}-->
+    <!--</div>-->
 
     <br/><br/>
     <passenger-details
-            class="passanger-item"
             *ngFor="let passenger of passengers"
+            class="passanger-item"
             [details]="passenger"
             (edit)="handleEdit($event)"
             (remove)="handleRemove($event)">
