@@ -1,4 +1,10 @@
 <div class="app">
-  <passenger-viewer></passenger-viewer>
-  <!--<passenger-dashboard></passenger-dashboard>-->
+    <nav class="nav">
+        <a routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
+        <a routerLink="/passengers" routerLinkActive="active">Passengers</a>
+        <a routerLink="/oops" routerLinkActive="active">Opps</a>
+    </nav>
+    <router-outlet></router-outlet>
+    <!--<passenger-viewer></passenger-viewer>-->
+    <!--<passenger-dashboard></passenger-dashboard>-->
 </div>
