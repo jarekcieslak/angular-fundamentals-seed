@@ -9,30 +9,33 @@ import {Passenger} from '../../models/passenger.interface';
 export class PassengerDetailsComponent implements OnChanges, OnInit {
 
     @Input()
-    details:Passenger;
+    details: Passenger;
 
     @Output()
-    remove:EventEmitter<any> = new EventEmitter();
+    remove: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
     @Output()
-    edit:EventEmitter<any> = new EventEmitter();
+    edit: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
-    editing:boolean = false;
+    @Output()
+    view: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
+    editing: boolean = false;
 
 
     // Necessary to update local value
-    onNameChange(value:string):void {
+    onNameChange(value: string): void {
         console.log('changing name: ', value);
         this.details.fullName = value;
     }
 
     // We fire an event when user clicks remove passenger
-    removePassenger(passenger:Passenger):void {
+    removePassenger(passenger: Passenger): void {
         this.remove.emit(this.details);
     }
 
     // we fire an event once user is done editing passenger
-    toggleEdit():void {
+    toggleEdit(): void {
         if (this.editing) {
             this.edit.emit(this.details)
         }
@@ -50,6 +53,10 @@ export class PassengerDetailsComponent implements OnChanges, OnInit {
         }
     }
 
-    ngOnInit():void {
+    ngOnInit(): void {
+    }
+
+    public goToPassenger() {
+        this.view.emit(this.details);
     }
 }

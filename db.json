@@ -1,18 +1,18 @@
 {
   "passengers": [
     {
+      "fullName": "1111",
       "id": 1,
-      "fullName": "Liu Kang",
       "checkedIn": true,
-      "checkInDate": 1486117624525,
-      "baggage": "none"
+      "baggage": "none",
+      "checkInDate": 1486117624525
     },
     {
+      "fullName": "Todd moto",
       "id": 2,
-      "fullName": "Liu Kang",
       "checkedIn": true,
-      "checkInDate": 1486117624525,
-      "baggage": "hand-hold"
+      "baggage": "none",
+      "checkInDate": 1486117624525
     },
     {
       "id": 3,

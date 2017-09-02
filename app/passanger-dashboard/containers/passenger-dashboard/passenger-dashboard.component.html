@@ -1,7 +1,7 @@
 <div>
     <passenger-count [items]="passengers"></passenger-count>
     <!--<div *ngFor="let passenger of passengers">-->
-        <!--{{passenger.fullName}}-->
+    <!--{{passenger.fullName}}-->
     <!--</div>-->
 
     <br/><br/>
@@ -10,7 +10,8 @@
             class="passanger-item"
             [details]="passenger"
             (edit)="handleEdit($event)"
-            (remove)="handleRemove($event)">
+            (remove)="handleRemove($event)"
+            (view)="handleView($event)">
     </passenger-details>
 </div>
 

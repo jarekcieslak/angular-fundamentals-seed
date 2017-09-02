@@ -1,2 +1,5 @@
 <h1>Passenger viewer</h1>
-<passenger-form *ngIf="!!passenger" [detail]="passenger"></passenger-form>
+<passenger-form
+        *ngIf="!!passenger"
+        (update)="onUpdatePassenger($event)"
+        [detail]="passenger"></passenger-form>

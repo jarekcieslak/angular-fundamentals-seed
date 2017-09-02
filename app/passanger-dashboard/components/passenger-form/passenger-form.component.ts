@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Passenger} from "../../models/passenger.interface";
 
 @Component({
@@ -11,8 +11,11 @@ export class PassengerFormComponent implements OnInit {
     @Input()
     detail: Passenger;
 
+    @Output()
+    update: EventEmitter<Passenger> = new EventEmitter();
+
+
     public ngOnInit(): void {
-        console.warn('Witamy w komponencie');
     }
 
     public toggleCheckedIn(isCheckedIn: any) {
@@ -22,6 +25,12 @@ export class PassengerFormComponent implements OnInit {
         } else {
             this.detail.checkInDate = null;
             this.detail.checkedIn = isCheckedIn;
+        }
+    }
+
+    public handleSubmit(passenger: Passenger, isValid: boolean) {
+        if (isValid) {
+            this.update.emit(passenger);
         }
     }
 }
